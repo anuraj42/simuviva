@@ -16,12 +16,57 @@
                 <span style="font-size: 24px; font-weight: bold;">SIMU VIVA</span>
             </div>
             
-            <!-- THIS IS WHERE YOUR LOGIN SYNTAX GOES -->
             <div>
-                <button type="button" style="padding: 8px 16px; cursor: pointer;">Login</button>
+                <button type="button" class="open-login-btn" style="padding: 8px 16px; cursor: pointer;">Login</button>
             </div>
         </nav>
     </header>
+
+    <div class="modal-overlay" id="loginModal">
+        <div class="login-card">
+            <button type="button" class="close-login-btn" aria-label="Close login form">&times;</button>
+            <h2>Login</h2>
+            <p>Welcome back! Sign in to continue.</p>
+
+            <div class="alt-login-options">
+                <button type="button" class="social-btn phone-btn">
+                    <span class="social-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 1h-9A2.5 2.5 0 0 0 5 3.5v17A2.5 2.5 0 0 0 7.5 23h9a2.5 2.5 0 0 0 2.5-2.5v-17A2.5 2.5 0 0 0 16.5 1Zm-4.5 20a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5Zm4.2-4.2H7.8V4.5h8.4v12.3Z"/></svg>
+                    </span>
+                    Continue with Phone
+                </button>
+                <button type="button" class="social-btn gmail-btn">
+                    <span class="social-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v11A2.5 2.5 0 0 1 18.5 20h-13A2.5 2.5 0 0 1 3 17.5v-11Zm2.1 0 6.9 5.1L18.9 6.5H5.1Zm14.4 1.9-7 5.2a1 1 0 0 1-1.1 0L4.5 8.4v9.1c0 .3.2.5.5.5h13c.3 0 .5-.2.5-.5V8.4Z"/></svg>
+                    </span>
+                    Continue with Gmail
+                </button>
+                <button type="button" class="social-btn apple-btn">
+                    <span class="social-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 12.3c0-2.1 1.7-3.1 1.8-3.2-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.4.8-.7 0-1.7-.8-2.8-.8-1.4 0-2.8.9-3.5 2.2-1.5 2.6-.4 6.5 1.1 8.6.7 1 .9 1.5 1.8 1.6 1.1.1 1.8-.7 2.6-.7.7 0 1.3.7 2.6.7 1.1 0 1.8-.9 2.5-1.7.8-1.1 1.1-2.3 1.1-2.4-.1-.1-2.1-.8-3.2-2.1Zm-2.1-5.9c.6-.8 1-1.8.9-2.9-.8.1-1.9.6-2.5 1.4-.5.7-1 1.7-.9 2.8.9.1 1.9-.4 2.5-1.3Z"/></svg>
+                    </span>
+                    Continue with Apple
+                </button>
+            </div>
+
+            <div class="divider"><span>or</span></div>
+
+            <form class="login-form">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                <div class="login-options">
+                    <label class="remember-me"><input type="checkbox"> Remember me</label>
+                    <a href="#">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="submit-btn">Sign In</button>
+            </form>
+        </div>
+    </div>
 
     <section style="padding: 20px 50px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
         <img src="1785148423318.png" alt="Students learning with technology" style="width: 100%; height: 400px; object-fit: cover; border-radius: 10px;">
@@ -78,4 +123,30 @@ SimuViva offers a seamless, cross-platform experience, optimized for both laptop
             <p>If you have any questions or need support, please reach out to us at <a href="mailto:supportsimuviva@gmail.com">supportsimuviva@gmail.com</a>.</p>
         </section>
     </main>
+
+    <script>
+        const openLoginBtn = document.querySelector('.open-login-btn');
+        const loginModal = document.getElementById('loginModal');
+        const closeLoginBtn = document.querySelector('.close-login-btn');
+
+        if (openLoginBtn && loginModal) {
+            openLoginBtn.addEventListener('click', () => {
+                loginModal.classList.add('active');
+            });
+        }
+
+        if (closeLoginBtn && loginModal) {
+            closeLoginBtn.addEventListener('click', () => {
+                loginModal.classList.remove('active');
+            });
+        }
+
+        if (loginModal) {
+            loginModal.addEventListener('click', (event) => {
+                if (event.target === loginModal) {
+                    loginModal.classList.remove('active');
+                }
+            });
+        }
+    </script>
 </body>
