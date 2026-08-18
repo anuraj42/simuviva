@@ -127,6 +127,21 @@ nav {
     background: rgba(255, 255, 255, 0.08);
 }
 
+.nav-auth-links {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    margin-top: 2px;
+}
+
+.nav-auth-links a {
+    flex: 1;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    font-weight: 600;
+}
+
 .modal-overlay {
     position: fixed;
     inset: 0;

@@ -17,7 +17,10 @@
         </div>
         <nav>
             <a href="#">Home</a>
-            <a href="#" class="nav-login-link">Login</a>
+            <div class="nav-auth-links">
+                <a href="#" class="nav-login-link">Login</a>
+                <a href="#" class="nav-signup-link">Sign up</a>
+            </div>
             <a href="#contact-us">Contact us</a>
             <a href="#">My Activities</a>
             <a href="#">Account details</a>
@@ -186,11 +189,26 @@ SimuViva offers a seamless, cross-platform experience, optimized for both laptop
         }
 
         const navLoginLink = document.querySelector('.nav-login-link');
+        const navSignupLink = document.querySelector('.nav-signup-link');
+
+        function openLoginModal() {
+            if (loginModal) {
+                loginModal.classList.add('active');
+                closeSideNav();
+            }
+        }
+
         if (navLoginLink && loginModal) {
             navLoginLink.addEventListener('click', (event) => {
                 event.preventDefault();
-                loginModal.classList.add('active');
-                closeSideNav();
+                openLoginModal();
+            });
+        }
+
+        if (navSignupLink && loginModal) {
+            navSignupLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                openLoginModal();
             });
         }
 
