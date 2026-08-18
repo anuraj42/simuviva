@@ -8,12 +8,28 @@
 </head>
     
 <body>
+    <div class="side-nav-overlay" id="sideNavOverlay"></div>
+
+    <aside class="side-nav" id="sideNav" aria-label="Main navigation">
+        <div class="side-nav-header">
+            <span>SIMU VIVA</span>
+            <button type="button" class="close-side-nav" aria-label="Close navigation">&times;</button>
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#" class="nav-login-link">Login</a>
+            <a href="#contact-us">Contact us</a>
+            <a href="#">My Activities</a>
+            <a href="#">Account details</a>
+        </nav>
+    </aside>
+
     <header>
         <nav style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
             <!-- Left Side: Menu and Title -->
             <div style="display: flex; align-items: center;">
-                <span style="font-size: 24px; cursor: pointer; margin-right: 15px;">&#9776;</span>
-                <span style="font-size: 14px; font-weight: bold;">SIMU VIVA</span>
+                <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+                <span style="font-size: 24px; font-weight: bold;">SIMU VIVA</span>
             </div>
             
             <div>
@@ -118,7 +134,7 @@ SimuViva offers a seamless, cross-platform experience, optimized for both laptop
 
             </ul>
         </section>
-        <section style="padding: 50px;">
+        <section id="contact-us" style="padding: 50px;">
             <h2>Contact Us</h2>
             <p>If you have any questions or need support, please reach out to us at <a href="mailto:supportsimuviva@gmail.com">supportsimuviva@gmail.com</a>.</p>
         </section>
@@ -128,10 +144,53 @@ SimuViva offers a seamless, cross-platform experience, optimized for both laptop
         const openLoginBtn = document.querySelector('.open-login-btn');
         const loginModal = document.getElementById('loginModal');
         const closeLoginBtn = document.querySelector('.close-login-btn');
+        const menuToggle = document.getElementById('menuToggle');
+        const sideNav = document.getElementById('sideNav');
+        const sideNavOverlay = document.getElementById('sideNavOverlay');
+        const closeSideNavBtn = document.querySelector('.close-side-nav');
+
+        function closeSideNav() {
+            if (sideNav) {
+                sideNav.classList.remove('active');
+            }
+            if (sideNavOverlay) {
+                sideNavOverlay.classList.remove('active');
+            }
+            if (menuToggle) {
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        if (menuToggle && sideNav && sideNavOverlay) {
+            menuToggle.addEventListener('click', () => {
+                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+                sideNav.classList.toggle('active');
+                sideNavOverlay.classList.toggle('active');
+            });
+        }
+
+        if (closeSideNavBtn) {
+            closeSideNavBtn.addEventListener('click', closeSideNav);
+        }
+
+        if (sideNavOverlay) {
+            sideNavOverlay.addEventListener('click', closeSideNav);
+        }
 
         if (openLoginBtn && loginModal) {
             openLoginBtn.addEventListener('click', () => {
                 loginModal.classList.add('active');
+                closeSideNav();
+            });
+        }
+
+        const navLoginLink = document.querySelector('.nav-login-link');
+        if (navLoginLink && loginModal) {
+            navLoginLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                loginModal.classList.add('active');
+                closeSideNav();
             });
         }
 
@@ -148,5 +207,14 @@ SimuViva offers a seamless, cross-platform experience, optimized for both laptop
                 }
             });
         }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeSideNav();
+                if (loginModal) {
+                    loginModal.classList.remove('active');
+                }
+            }
+        });
     </script>
 </body>

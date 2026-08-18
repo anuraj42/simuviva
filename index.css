@@ -46,6 +46,87 @@ nav {
     backdrop-filter: blur(4px);
 }
 
+.menu-toggle {
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 15px;
+    padding: 4px 8px;
+    background: transparent;
+    border: none;
+    color: #fff;
+}
+
+.side-nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease;
+    z-index: 999;
+}
+
+.side-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.side-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: min(280px, 80vw);
+    height: 100vh;
+    padding: 20px 18px;
+    background: rgba(7, 11, 22, 0.96);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    transform: translateX(-105%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.side-nav.active {
+    transform: translateX(0);
+}
+
+.side-nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    font-weight: 700;
+}
+
+.close-side-nav {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.side-nav nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: transparent;
+}
+
+.side-nav nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 10px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.side-nav nav a:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
 .modal-overlay {
     position: fixed;
     inset: 0;
